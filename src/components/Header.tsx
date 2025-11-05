@@ -11,7 +11,7 @@ import styles from "./Header.module.scss";
 
 type TimeDisplayProps = {
   timeZone: string;
-  locale?: string; // Optionally allow locale, defaulting to 'en-GB'
+  locale?: string;
 };
 
 const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" }) => {
@@ -39,8 +39,6 @@ const TimeDisplay: React.FC<TimeDisplayProps> = ({ timeZone, locale = "en-GB" })
 
   return <>{currentTime}</>;
 };
-
-export default TimeDisplay;
 
 export const Header = () => {
   const pathname = usePathname() ?? "";

@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { routes, protectedRoutes } from "@/resources";
-import { Flex, Spinner } from "@once-ui-system/core";
-import NotFound from "@/app/not-found";
+import { Flex, Spinner, Column, Heading, Text } from "@once-ui-system/core";
 
 interface RouteGuardProps {
   children: React.ReactNode;
@@ -76,7 +75,17 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
   }
 
   if (!isRouteEnabled) {
-    return <NotFound />;
+    return (
+      <Column as="section" fill center paddingBottom="160">
+        <Text marginBottom="s" variant="display-strong-xl">
+          404
+        </Text>
+        <Heading marginBottom="l" variant="display-default-xs">
+          Page Not Found
+        </Heading>
+        <Text onBackground="neutral-weak">The page you are looking for does not exist.</Text>
+      </Column>
+    );
   }
 
   if (isPasswordRequired && !isAuthenticated) {

@@ -11,7 +11,6 @@ import {
   SocialSharingConfig,
   StyleConfig,
 } from "@/types";
-import { home } from "./index";
 
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
 const baseURL: string = "https://rafsan3051.vercel.app";
@@ -199,7 +198,7 @@ const schema: SchemaConfig = {
   logo: "",
   type: "Person",
   name: "Rayhan Ahmed Shis",
-  description: home.description,
+  description: "Portfolio website showcasing my work as a Developer",
   email: "rafsan3051@gmail.com",
 };
 
