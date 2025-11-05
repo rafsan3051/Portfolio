@@ -8,7 +8,7 @@ const person: Person = {
   role: 'Developer',
   avatar: 'https://avatars.githubusercontent.com/u/126448173?v=4',
   email: 'rafsan3051@gmail.com',
-  location: 'Gazipur,Dhaka,Bangladesh', // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  location: 'Asia/Dhaka', // IANA time zone identifier for Dhaka
   languages: ["English", "Bengali"], // optional: Leave the array empty if you don't want to display languages
 };
 
@@ -62,7 +62,7 @@ const about: About = {
   path: "/about",
   label: "About",
   title: `About – ${person.name}`,
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+  description: `Meet ${person.name}, ${person.role} from Gazipur, Dhaka, Bangladesh`,
   tableOfContent: {
     display: true,
     subItems: false,
