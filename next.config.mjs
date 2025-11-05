@@ -9,9 +9,6 @@ const withMDX = mdx({
 const nextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   transpilePackages: ["next-mdx-remote"],
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   // Performance optimizations
   compress: true,
   poweredByHeader: false,
@@ -64,6 +61,21 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "www.google.com",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "opengraph.githubassets.com",
         pathname: "**",
       },
     ],

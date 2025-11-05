@@ -73,7 +73,11 @@ export const Header = () => {
         }}
       >
         <Row paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s">
-          {display.location && <Row s={{ hide: true }}>{person.location}</Row>}
+          {display.location && (
+            <Row s={{ hide: true }} suppressHydrationWarning>
+              {person.location}
+            </Row>
+          )}
         </Row>
         <Row fillWidth horizontal="center">
           <Row
@@ -183,7 +187,7 @@ export const Header = () => {
             textVariant="body-default-s"
             gap="20"
           >
-            <Flex s={{ hide: true }}>
+            <Flex s={{ hide: true }} suppressHydrationWarning>
               {display.time && <TimeDisplay timeZone={person.location} />}
             </Flex>
           </Flex>

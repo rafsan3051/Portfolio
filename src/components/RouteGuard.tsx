@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { routes, protectedRoutes } from "@/resources";
-import { Flex, Spinner, Button, Heading, Column, PasswordInput, Input } from "@once-ui-system/core";
+import { Flex, Spinner } from "@once-ui-system/core";
 import NotFound from "@/app/not-found";
 
 interface RouteGuardProps {
@@ -12,12 +12,10 @@ interface RouteGuardProps {
 
 const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
   const pathname = usePathname();
+  const router = useRouter();
   const [isRouteEnabled, setIsRouteEnabled] = useState(false);
   const [isPasswordRequired, setIsPasswordRequired] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [error, setError] = useState<string | undefined>(undefined);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -50,7 +48,7 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
       if (protectedRoutes[pathname as keyof typeof protectedRoutes]) {
         setIsPasswordRequired(true);
 
-        const response = await fetch("/api/check-auth");
+        const response = await fetch("/api/check-auth", { credentials: "include" });
         if (response.ok) {
           setIsAuthenticated(true);
         }
@@ -62,21 +60,12 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
     performChecks();
   }, [pathname]);
 
-  const handlePasswordSubmit = async () => {
-    const response = await fetch("/api/admin/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
-    });
-
-    if (response.ok) {
-      setIsAuthenticated(true);
-      setError(undefined);
-    } else {
-      const data = await response.json();
-      setError(data.message || "Incorrect credentials");
+  // Redirect to /login when this route is protected and user is not authenticated
+  useEffect(() => {
+    if (!loading && isPasswordRequired && !isAuthenticated && pathname !== "/login") {
+      router.replace(`/login?redirect=${encodeURIComponent(pathname || "/")}`);
     }
-  };
+  }, [loading, isPasswordRequired, isAuthenticated, pathname, router]);
 
   if (loading) {
     return (
@@ -92,27 +81,9 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
 
   if (isPasswordRequired && !isAuthenticated) {
     return (
-      <Column paddingY="128" maxWidth={24} gap="24" center>
-        <Heading align="center" wrap="balance">
-          This page is password protected
-        </Heading>
-        <Column fillWidth gap="8" horizontal="center">
-          <Input
-            id="username"
-            label="Username"
-            value={username}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
-          />
-          <PasswordInput
-            id="password"
-            label="Password"
-            value={password}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
-            errorMessage={error}
-          />
-          <Button onClick={handlePasswordSubmit}>Submit</Button>
-        </Column>
-      </Column>
+      <Flex fillWidth paddingY="128" horizontal="center">
+        <Spinner />
+      </Flex>
     );
   }
 

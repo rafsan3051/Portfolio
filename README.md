@@ -47,6 +47,58 @@ Docs available at: [docs.once-ui.com](https://docs.once-ui.com/docs/magic-portfo
 ## Features
 
 ### Once UI
+## Automatic GitHub Sync
+
+This portfolio can auto-sync whenever you push, create, delete, or rename public repositories on GitHub.
+
+Two mechanisms are available:
+
+- GitHub Webhook (recommended): GitHub calls your site and triggers a full sync.
+- Scheduled Cron (optional): A timed job that triggers sync periodically as a safety net.
+
+### 1) Configure environment variables
+
+Add these to your deployment environment (and optionally to `.env` locally):
+
+- `GITHUB_USERNAME` (optional; defaults to your account, e.g., `rafsan3051`)
+- `GITHUB_TOKEN` (optional but recommended for higher rate limits)
+- `GITHUB_WEBHOOK_SECRET` (required for webhook signature verification)
+- `CRON_SECRET` (required if you enable scheduled sync)
+
+### 2) GitHub webhook setup
+
+Set up a webhook at either your user’s settings (for all repos) or per-repository:
+
+- Payload URL: `https://your-domain.com/api/webhooks/github`
+- Content type: `application/json`
+- Secret: value of `GITHUB_WEBHOOK_SECRET`
+- Events: choose “Let me select individual events” and select at least `push` and `repository` (or choose “Send me everything”).
+
+When GitHub fires a webhook for push or repo changes, the route validates the HMAC (`X-Hub-Signature-256`) and calls a full sync.
+
+### 3) Optional: scheduled sync
+
+Add a scheduled task (Vercel/Netlify/cron) to call:
+
+GET `https://your-domain.com/api/cron/sync`
+
+Headers: `Authorization: Bearer <CRON_SECRET>`
+
+### 4) Manual sync (for local maintenance)
+
+You can still run sync locally without the server:
+
+```
+npm run sync:repos
+```
+
+This updates MDX files under `src/app/work/projects` and prunes any stale GitHub-sourced entries. The manifest `.synced.json` tracks the current set.
+
+### Notes
+
+- Only MDX files with `source: "github"` are pruned automatically. Manually authored MDX are preserved unless you remove them yourself.
+- Project images use local files when present, and fall back to GitHub OpenGraph previews when missing.
+- The dashboard “Sync Selected” uses the same sync engine and now shows how many items were pruned.
 - All tokens, components & features of [Once UI](https://once-ui.com)
 
 ### SEO

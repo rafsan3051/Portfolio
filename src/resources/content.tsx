@@ -2,13 +2,13 @@ import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/
 import { Line, Logo, Row, Text } from "@once-ui-system/core";
 
 const person: Person = {
-  firstName: "Rayhan",
-  lastName: "Ahmed Shis",
+  firstName: 'Md.',
+  lastName: 'Rayhan Ahmed Shis',
   name: `Rayhan Ahmed Shis`,
-  role: "Full Stack Developer",
-  avatar: "/images/avatar.jpg",
-  email: "rafsan3051@gmail.com",
-  location: "Asia/Dhaka", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  role: 'Developer',
+  avatar: 'https://avatars.githubusercontent.com/u/126448173?v=4',
+  email: 'rafsan3051@gmail.com',
+  location: 'Gazipur,Dhaka,Bangladesh', // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
   languages: ["English", "Bengali"], // optional: Leave the array empty if you don't want to display languages
 };
 
