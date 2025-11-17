@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, Github, Linkedin, Mail, Twitter } from "lucide-react";
+import { ArrowLeft, Github, Linkedin, Mail, Facebook, MessageCircle } from "lucide-react";
 import Particles from "../../components/particles";
+import ContactForm from "../../components/contact-form";
+import { ThemeToggle } from "../../components/theme-toggle";
 
 export default function ContactPage() {
   return (
@@ -23,6 +25,7 @@ export default function ContactPage() {
             <ArrowLeft size={16} />
             <span>Back</span>
           </Link>
+          <ThemeToggle />
         </div>
       </nav>
 
@@ -41,7 +44,7 @@ export default function ContactPage() {
             href="https://github.com/rafsan3051"
             target="_blank"
             rel="noreferrer"
-            className="group relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 p-8 backdrop-blur-sm transition-all duration-500 hover:border-zinc-600 hover:bg-zinc-800/50"
+            className="group relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 p-8 backdrop-blur-sm transition-all duration-500 hover:border-zinc-600 hover:bg-zinc-800/50 hover:scale-105"
           >
             <div className="flex items-center gap-4 mb-4">
               <div className="p-3 rounded-lg bg-zinc-800 group-hover:bg-zinc-700 transition-colors duration-500">
@@ -58,18 +61,18 @@ export default function ContactPage() {
           </a>
 
           <a
-            href="https://linkedin.com/in/"
+            href="https://www.linkedin.com/in/rayhan-ahmed-82a400245"
             target="_blank"
             rel="noreferrer"
-            className="group relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 p-8 backdrop-blur-sm transition-all duration-500 hover:border-zinc-600 hover:bg-zinc-800/50"
+            className="group relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 p-8 backdrop-blur-sm transition-all duration-500 hover:border-zinc-600 hover:bg-zinc-800/50 hover:scale-105"
           >
             <div className="flex items-center gap-4 mb-4">
-              <div className="p-3 rounded-lg bg-zinc-800 group-hover:bg-zinc-700 transition-colors duration-500">
-                <Linkedin size={24} className="text-zinc-100" />
+              <div className="p-3 rounded-lg bg-zinc-800 group-hover:bg-blue-900/50 transition-colors duration-500">
+                <Linkedin size={24} className="text-blue-400" />
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-zinc-100">LinkedIn</h3>
-                <p className="text-sm text-zinc-500">Connect with me</p>
+                <p className="text-sm text-zinc-500">Rayhan Ahmed</p>
               </div>
             </div>
             <p className="text-zinc-400 text-sm">
@@ -78,8 +81,8 @@ export default function ContactPage() {
           </a>
 
           <a
-            href="mailto:rayhan@example.com"
-            className="group relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 p-8 backdrop-blur-sm transition-all duration-500 hover:border-zinc-600 hover:bg-zinc-800/50"
+            href="mailto:rafsan3051@gmail.com"
+            className="group relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 p-8 backdrop-blur-sm transition-all duration-500 hover:border-zinc-600 hover:bg-zinc-800/50 hover:scale-105"
           >
             <div className="flex items-center gap-4 mb-4">
               <div className="p-3 rounded-lg bg-zinc-800 group-hover:bg-zinc-700 transition-colors duration-500">
@@ -87,7 +90,7 @@ export default function ContactPage() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold text-zinc-100">Email</h3>
-                <p className="text-sm text-zinc-500">rayhan@example.com</p>
+                <p className="text-sm text-zinc-500">rafsan3051@gmail.com</p>
               </div>
             </div>
             <p className="text-zinc-400 text-sm">
@@ -96,41 +99,84 @@ export default function ContactPage() {
           </a>
 
           <a
-            href="https://twitter.com/"
+            href="https://www.facebook.com/share/1RkYAfF3St/"
             target="_blank"
             rel="noreferrer"
-            className="group relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 p-8 backdrop-blur-sm transition-all duration-500 hover:border-zinc-600 hover:bg-zinc-800/50"
+            className="group relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 p-8 backdrop-blur-sm transition-all duration-500 hover:border-zinc-600 hover:bg-zinc-800/50 hover:scale-105"
           >
             <div className="flex items-center gap-4 mb-4">
-              <div className="p-3 rounded-lg bg-zinc-800 group-hover:bg-zinc-700 transition-colors duration-500">
-                <Twitter size={24} className="text-zinc-100" />
+              <div className="p-3 rounded-lg bg-zinc-800 group-hover:bg-blue-900/50 transition-colors duration-500">
+                <Facebook size={24} className="text-blue-500" />
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-zinc-100">Twitter</h3>
-                <p className="text-sm text-zinc-500">Follow me</p>
+                <h3 className="text-lg font-semibold text-zinc-100">Facebook</h3>
+                <p className="text-sm text-zinc-500">Rayhan Ahmed</p>
               </div>
             </div>
             <p className="text-zinc-400 text-sm">
-              Stay updated with my latest work and thoughts
+              Connect with me on Facebook
+            </p>
+          </a>
+
+          <a
+            href="https://m.me/rayhanahmed3051"
+            target="_blank"
+            rel="noreferrer"
+            className="group relative overflow-hidden rounded-lg border border-zinc-800 bg-zinc-900/50 p-8 backdrop-blur-sm transition-all duration-500 hover:border-zinc-600 hover:bg-zinc-800/50 hover:scale-105"
+          >
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 rounded-lg bg-zinc-800 group-hover:bg-purple-900/50 transition-colors duration-500">
+                <MessageCircle size={24} className="text-purple-400" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-zinc-100">Messenger</h3>
+                <p className="text-sm text-zinc-500">@rayhanahmed3051</p>
+              </div>
+            </div>
+            <p className="text-zinc-400 text-sm">
+              Send me a message on Messenger
             </p>
           </a>
         </div>
 
-        <div className="mt-16 glass rounded-lg p-8 backdrop-blur-sm animate-fade-in">
-          <h2 className="text-2xl font-semibold text-zinc-100 mb-4">
-            Ready to collaborate?
-          </h2>
-          <p className="text-zinc-400 leading-relaxed mb-6">
-            I'm always interested in hearing about new projects and
-            opportunities. Whether you have a question or just want to say hi,
-            feel free to reach out!
-          </p>
-          <a
-            href="/resume.pdf"
-            className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-800/50 px-6 py-3 text-sm font-medium text-zinc-100 transition-all duration-500 hover:border-zinc-500 hover:bg-zinc-700/50"
-          >
-            Download Resume
-          </a>
+        <div className="mt-16 space-y-8 animate-fade-in">
+          <div className="glass rounded-lg p-8 backdrop-blur-sm">
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-4">
+              Send me a message
+            </h2>
+            <p className="text-zinc-400 leading-relaxed mb-6">
+              Fill out the form below and I'll get back to you as soon as possible.
+            </p>
+            <ContactForm />
+          </div>
+
+          <div className="glass rounded-lg p-8 backdrop-blur-sm">
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-4">
+              Ready to collaborate?
+            </h2>
+            <p className="text-zinc-400 leading-relaxed mb-6">
+              I'm always interested in hearing about new projects and
+              opportunities. Whether you have a question or just want to say hi,
+              feel free to reach out!
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="/resume.pdf"
+                download
+                className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-800/50 px-6 py-3 text-sm font-medium text-zinc-100 transition-all duration-500 hover:border-zinc-500 hover:bg-zinc-700/50 hover:scale-105"
+              >
+                📄 Download Resume
+              </a>
+              <a
+                href="https://github.com/rafsan3051?tab=repositories"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-800/50 px-6 py-3 text-sm font-medium text-zinc-100 transition-all duration-500 hover:border-zinc-500 hover:bg-zinc-700/50 hover:scale-105"
+              >
+                💼 View Portfolio
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

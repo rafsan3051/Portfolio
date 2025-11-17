@@ -3,6 +3,9 @@
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import Particles from "../../components/particles";
+import SkillProgress from "../../components/skill-progress";
+import Testimonials from "../../components/testimonials";
+import { ThemeToggle } from "../../components/theme-toggle";
 
 export default function AboutPage() {
   return (
@@ -23,6 +26,7 @@ export default function AboutPage() {
             <ArrowLeft size={16} />
             <span>Back</span>
           </Link>
+          <ThemeToggle />
         </div>
       </nav>
 
@@ -50,23 +54,29 @@ export default function AboutPage() {
           </section>
 
           <section className="glass rounded-lg p-8 backdrop-blur-sm">
-            <h2 className="text-2xl font-semibold text-zinc-100 mb-4">
-              Skills & Technologies
+            <h2 className="text-2xl font-semibold text-zinc-100 mb-6">
+              Skills & Expertise
             </h2>
-            <div className="flex flex-wrap gap-2">
+            <div className="space-y-4">
+              <SkillProgress skill="Next.js & React" level={95} color="bg-gradient-to-r from-blue-500 to-cyan-500" delay={100} />
+              <SkillProgress skill="TypeScript" level={90} color="bg-gradient-to-r from-blue-600 to-blue-400" delay={200} />
+              <SkillProgress skill="Node.js & Backend" level={85} color="bg-gradient-to-r from-green-500 to-emerald-500" delay={300} />
+              <SkillProgress skill="Python & Django" level={80} color="bg-gradient-to-r from-yellow-500 to-orange-500" delay={400} />
+              <SkillProgress skill="Laravel & PHP" level={85} color="bg-gradient-to-r from-red-500 to-pink-500" delay={500} />
+              <SkillProgress skill="Docker & DevOps" level={75} color="bg-gradient-to-r from-cyan-500 to-blue-500" delay={600} />
+              <SkillProgress skill="Blockchain (Hyperledger)" level={70} color="bg-gradient-to-r from-purple-500 to-indigo-500" delay={700} />
+              <SkillProgress skill="UI/UX Design" level={80} color="bg-gradient-to-r from-pink-500 to-rose-500" delay={800} />
+            </div>
+            <div className="mt-8 flex flex-wrap gap-2">
               {[
-                "Next.js",
-                "React",
-                "TypeScript",
-                "Node.js",
                 "Tailwind CSS",
-                "Python",
-                "Laravel",
-                "Hyperledger Fabric",
-                "Docker",
                 "Git",
                 "REST APIs",
                 "GraphQL",
+                "MongoDB",
+                "PostgreSQL",
+                "Redis",
+                "AWS",
               ].map((skill) => (
                 <span
                   key={skill}
@@ -117,6 +127,8 @@ export default function AboutPage() {
               </p>
             </div>
           </section>
+
+          <Testimonials />
         </div>
       </div>
     </div>

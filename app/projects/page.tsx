@@ -3,15 +3,42 @@
 import Link from "next/link";
 import { ArrowLeft, Github, ExternalLink } from "lucide-react";
 import Particles from "../../components/particles";
+import ProjectSearch from "../../components/project-search";
+import { ThemeToggle } from "../../components/theme-toggle";
 import useSWR from "swr";
+import { useState, useMemo } from "react";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 export default function ProjectsPage() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  
   const { data: repos, error } = useSWR(
-    "https://api.github.com/users/rafsan3051/repos?sort=updated&per_page=12",
+    "https://api.github.com/users/rafsan3051/repos?sort=updated&per_page=50",
     fetcher
   );
+
+  const filteredRepos = useMemo(() => {
+    if (!repos) return [];
+    
+    let filtered = repos.filter((repo: any) => !repo.fork);
+    
+    // Filter by search query
+    if (searchQuery) {
+      filtered = filtered.filter((repo: any) =>
+        repo.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        repo.description?.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    
+    // Filter by category
+    if (selectedCategory !== "All") {
+      filtered = filtered.filter((repo: any) => repo.language === selectedCategory);
+    }
+    
+    return filtered;
+  }, [repos, searchQuery, selectedCategory]);
 
   return (
     <div className="relative min-h-screen bg-gradient-to-tr from-black via-zinc-600/20 to-black">
@@ -31,6 +58,7 @@ export default function ProjectsPage() {
             <ArrowLeft size={16} />
             <span>Back</span>
           </Link>
+          <ThemeToggle />
         </div>
       </nav>
 
@@ -40,9 +68,19 @@ export default function ProjectsPage() {
         <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-white bg-clip-text text-edge-outline animate-title mb-4">
           Projects
         </h1>
-        <p className="text-zinc-400 text-lg mb-16 animate-fade-in">
+        <p className="text-zinc-400 text-lg mb-8 animate-fade-in">
           A collection of projects I've worked on
         </p>
+
+        <ProjectSearch
+          onSearch={setSearchQuery}
+          onCategoryChange={setSelectedCategory}
+          selectedCategory={selectedCategory}
+        />
+
+        <div className="mb-4 text-sm text-zinc-500 animate-fade-in">
+          Showing {filteredRepos.length} {filteredRepos.length === 1 ? 'project' : 'projects'}
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 animate-fade-in">
           {!repos ? (
@@ -53,11 +91,12 @@ export default function ProjectsPage() {
             <div className="col-span-full text-center text-zinc-500 py-20">
               Failed to load projects
             </div>
+          ) : filteredRepos.length === 0 ? (
+            <div className="col-span-full text-center text-zinc-500 py-20">
+              No projects found matching your criteria
+            </div>
           ) : (
-            repos
-              .filter((repo: any) => !repo.fork)
-              .slice(0, 12)
-              .map((repo: any) => (
+            filteredRepos.map((repo: any) => (
                 <Link
                   key={repo.id}
                   href={repo.html_url}

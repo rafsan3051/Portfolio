@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import Particles from "../components/particles";
+import AnimatedBackground from "../components/animated-background";
+import { ThemeToggle } from "../components/theme-toggle";
 
 const navigation = [
   { name: "Projects", href: "/projects" },
@@ -12,20 +14,25 @@ const navigation = [
 export default function Page() {
   return (
     <main className="flex flex-col items-center justify-center w-screen h-screen overflow-hidden bg-gradient-to-tl from-black via-zinc-600/20 to-black">
-      <nav className="my-16 animate-fade-in">
+      <AnimatedBackground />
+      <div className="fixed top-6 right-6 z-50 animate-fade-in">
+        <ThemeToggle />
+      </div>
+      <nav className="my-16 animate-fade-in z-20">
         <ul className="flex items-center justify-center gap-4">
           {navigation.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm duration-500 text-zinc-500 hover:text-zinc-300"
+              className="group relative text-sm duration-500 text-zinc-500 hover:text-zinc-300"
             >
-              {item.name}
+              <span className="relative z-10">{item.name}</span>
+              <span className="absolute inset-x-0 -bottom-1 h-px bg-gradient-to-r from-blue-500/0 via-blue-500/50 to-blue-500/0 opacity-0 transition-opacity group-hover:opacity-100" />
             </Link>
           ))}
         </ul>
       </nav>
-      <Particles className="absolute inset-0 -z-10 animate-fade-in" quantity={100} />
+      <Particles className="absolute inset-0 z-10 animate-fade-in" quantity={100} />
       
       <div className="hidden w-screen h-px md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
       
