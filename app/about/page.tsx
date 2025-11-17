@@ -5,7 +5,6 @@ import { ArrowLeft } from "lucide-react";
 import Particles from "../../components/particles";
 import SkillProgress from "../../components/skill-progress";
 import Testimonials from "../../components/testimonials";
-import { ThemeToggle } from "../../components/theme-toggle";
 
 export default function AboutPage() {
   return (
@@ -26,7 +25,7 @@ export default function AboutPage() {
             <ArrowLeft size={16} />
             <span>Back</span>
           </Link>
-          <ThemeToggle />
+          <div />
         </div>
       </nav>
 

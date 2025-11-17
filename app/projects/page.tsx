@@ -4,7 +4,6 @@ import Link from "next/link";
 import { ArrowLeft, Github, ExternalLink } from "lucide-react";
 import Particles from "../../components/particles";
 import ProjectSearch from "../../components/project-search";
-import { ThemeToggle } from "../../components/theme-toggle";
 import useSWR from "swr";
 import { useState, useMemo } from "react";
 
@@ -58,7 +57,7 @@ export default function ProjectsPage() {
             <ArrowLeft size={16} />
             <span>Back</span>
           </Link>
-          <ThemeToggle />
+          <div />
         </div>
       </nav>
 

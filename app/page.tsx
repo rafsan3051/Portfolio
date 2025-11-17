@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Particles from "../components/particles";
 import AnimatedBackground from "../components/animated-background";
-import { ThemeToggle } from "../components/theme-toggle";
 
 const navigation = [
   { name: "Projects", href: "/projects" },
@@ -15,9 +14,7 @@ export default function Page() {
   return (
     <main className="flex flex-col items-center justify-center w-screen h-screen overflow-hidden bg-gradient-to-tl from-black via-zinc-600/20 to-black">
       <AnimatedBackground />
-      <div className="fixed top-6 right-6 z-50 animate-fade-in">
-        <ThemeToggle />
-      </div>
+      {/* Theme toggle removed per request */}
       <nav className="my-16 animate-fade-in z-20">
         <ul className="flex items-center justify-center gap-4">
           {navigation.map((item) => (
