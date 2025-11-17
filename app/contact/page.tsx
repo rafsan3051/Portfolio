@@ -5,8 +5,36 @@ import { ArrowLeft, Github, Linkedin, Mail, Facebook, MessageCircle } from "luci
 import Particles from "../../components/particles";
 import ContactForm from "../../components/contact-form";
 import { ThemeToggle } from "../../components/theme-toggle";
+import { useEffect, useMemo, useState } from "react";
 
 export default function ContactPage() {
+  const [meta, setMeta] = useState<{ size: number; updatedAt: string } | null>(null);
+  const DRIVE_URL = process.env.NEXT_PUBLIC_RESUME_DRIVE_URL;
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const res = await fetch("/api/resume-meta", { cache: "no-store" });
+        if (res.ok) {
+          const data = await res.json();
+          setMeta(data);
+        }
+      } catch {}
+    };
+    load();
+  }, []);
+
+  const formatted = useMemo(() => {
+    if (!meta) return null;
+    const sizeKB = meta.size < 1024 * 1024;
+    const size = sizeKB ? `${(meta.size / 1024).toFixed(1)} KB` : `${(meta.size / (1024 * 1024)).toFixed(2)} MB`;
+    const date = new Date(meta.updatedAt).toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+    });
+    return { size, date };
+  }, [meta]);
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-black via-zinc-600/20 to-black">
       <Particles
@@ -159,14 +187,23 @@ export default function ContactPage() {
               opportunities. Whether you have a question or just want to say hi,
               feel free to reach out!
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap items-center gap-4">
               <a
-                href="/resume.pdf"
-                download
+                href="/api/resume"
                 className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-800/50 px-6 py-3 text-sm font-medium text-zinc-100 transition-all duration-500 hover:border-zinc-500 hover:bg-zinc-700/50 hover:scale-105"
               >
                 📄 Download Resume
               </a>
+              {DRIVE_URL && (
+                <a
+                  href={DRIVE_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-800/50 px-6 py-3 text-sm font-medium text-zinc-100 transition-all duration-500 hover:border-zinc-500 hover:bg-zinc-700/50 hover:scale-105"
+                >
+                  ☁️ Google Drive
+                </a>
+              )}
               <a
                 href="https://github.com/rafsan3051?tab=repositories"
                 target="_blank"
@@ -175,6 +212,11 @@ export default function ContactPage() {
               >
                 💼 View Portfolio
               </a>
+              {formatted && (
+                <span className="text-xs text-zinc-500">
+                  {formatted.size} • Updated {formatted.date}
+                </span>
+              )}
             </div>
           </div>
         </div>
