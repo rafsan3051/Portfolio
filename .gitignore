@@ -4,13 +4,18 @@ node_modules
 # Build outputs
 .next
 out
+.vercel
 
 # Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+lerna-debug.log*
 
 # Misc
 .DS_Store
 .env*
+
+# Local Netlify folder
+.netlify

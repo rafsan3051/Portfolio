@@ -2,6 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['@once-ui-system/core'],
+  output: 'standalone',
+  images: {
+    unoptimized: true,
+  },
   experimental: {
     optimizePackageImports: [
       "lucide-react",
