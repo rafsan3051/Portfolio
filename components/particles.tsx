@@ -32,7 +32,13 @@ export default function Particles({
       context.current = canvasRef.current.getContext("2d");
     }
     initCanvas();
-    animate();
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduceMotion) {
+      animate();
+    } else {
+      // Draw once only for reduced motion users
+      drawParticles();
+    }
     window.addEventListener("resize", initCanvas);
 
     return () => {
@@ -89,7 +95,7 @@ export default function Particles({
       canvasRef.current.height = canvasSize.current.h * dpr;
       canvasRef.current.style.width = `${canvasSize.current.w}px`;
       canvasRef.current.style.height = `${canvasSize.current.h}px`;
-      context.current.scale(dpr, dpr);
+      context.current.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
   };
 
@@ -147,7 +153,19 @@ export default function Particles({
 
   const drawParticles = () => {
     clearContext();
-    const particleCount = quantity;
+    let particleCount = quantity;
+    const w = canvasSize.current.w;
+    // Responsive scaling
+    if (w < 400) particleCount = Math.min(particleCount, 25);
+    else if (w < 640) particleCount = Math.min(particleCount, 40);
+    else if (w < 1024) particleCount = Math.min(particleCount, 60);
+    // Reduced motion
+    if (typeof window !== 'undefined') {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduceMotion) {
+        particleCount = Math.min(particleCount, 20);
+      }
+    }
     for (let i = 0; i < particleCount; i++) {
       const circle = circleParams();
       drawCircle(circle);
@@ -166,7 +184,14 @@ export default function Particles({
     return remapped > 0 ? remapped : 0;
   };
 
-  const animate = () => {
+  let lastFrame = 0;
+  const animate = (now: number = 0) => {
+    // Throttle to ~40fps for mobile performance
+    if (now - lastFrame < 25) {
+      requestAnimationFrame(animate);
+      return;
+    }
+    lastFrame = now;
     clearContext();
     circles.current.forEach((circle: Circle, i: number) => {
       // Handle the alpha value

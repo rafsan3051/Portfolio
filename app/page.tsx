@@ -33,7 +33,7 @@ export default function Page() {
       
       <div className="hidden w-screen h-px md:block animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
       
-      <h1 className="py-3.5 px-0.5 z-10 text-4xl text-transparent duration-1000 bg-white cursor-default text-edge-outline animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text">
+      <h1 className="py-3.5 px-0.5 z-10 text-transparent duration-1000 bg-white cursor-default text-edge-outline animate-title font-display bg-clip-text text-[clamp(2.5rem,8vw,6rem)] leading-tight">
         Md. Rayhan Ahmed Shis
       </h1>
 
