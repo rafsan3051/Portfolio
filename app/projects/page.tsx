@@ -70,7 +70,7 @@ export default function ProjectsPage() {
       <div className="container mx-auto px-6 pt-32 pb-16">
         <div className="hidden w-full h-px animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0 mb-12" />
         
-        <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-white bg-clip-text text-edge-outline animate-title mb-4">
+        <h1 className="py-3.5 px-0.5 text-4xl md:text-6xl font-bold text-transparent bg-white bg-clip-text animate-title mb-4">
           Projects
         </h1>
         <p className="text-zinc-400 text-lg mb-8 animate-fade-in">

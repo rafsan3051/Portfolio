@@ -37,7 +37,7 @@ export default function AboutPage() {
       <div className="container mx-auto max-w-4xl px-6 pt-32 pb-16">
         <div className="hidden w-full h-px animate-fade-left bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0 mb-12" />
         
-        <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-white bg-clip-text text-edge-outline animate-title mb-8">
+        <h1 className="py-3.5 px-0.5 text-4xl md:text-6xl font-bold text-transparent bg-white bg-clip-text animate-title mb-8">
           About Me
         </h1>
 
