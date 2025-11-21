@@ -2,9 +2,17 @@
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ['@once-ui-system/core'],
-  output: 'standalone',
   images: {
-    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'raw.githubusercontent.com',
+      },
+    ],
   },
   experimental: {
     optimizePackageImports: [
