@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import Particles from "../../components/particles";
 import SkillProgress from "../../components/skill-progress";
 import Testimonials from "../../components/testimonials";
@@ -18,14 +17,20 @@ export default function AboutPage() {
 
       <nav className="fixed top-0 z-50 w-full border-b border-zinc-800/50 bg-black/50 backdrop-blur-sm">
         <div className="container mx-auto flex items-center justify-between px-6 py-4">
-          <Link
-            href="/"
-            className="flex items-center gap-2 text-sm duration-500 text-zinc-400 hover:text-zinc-100"
-          >
-            <ArrowLeft size={16} />
-            <span>Back</span>
+          <Link href="/" className="text-sm font-medium duration-500 text-zinc-100 hover:text-zinc-400">
+            Home
           </Link>
-          <div />
+          <div className="flex items-center gap-6">
+            <Link href="/projects" className="text-sm duration-500 text-zinc-400 hover:text-zinc-100">
+              Projects
+            </Link>
+            <Link href="/about" className="text-sm duration-500 text-zinc-100 hover:text-zinc-400">
+              About
+            </Link>
+            <Link href="/contact" className="text-sm duration-500 text-zinc-400 hover:text-zinc-100">
+              Contact
+            </Link>
+          </div>
         </div>
       </nav>
 
