@@ -11,17 +11,17 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const metadata: Metadata = {
   metadataBase: new URL("https://rayhanahmedshis.me"),
   title: {
-    default: "Md. Rayhan Ahmed Shis — Developer / Technologist",
-    template: "%s — MRAS",
+    default: "Md. Rayhan Ahmed Shis — Full-Stack Developer",
+    template: "%s — Rayhan Ahmed Shis",
   },
   description:
-    "Passionate about building modern web experiences, automation, and emerging tech.",
+    "Full-stack developer crafting innovative web applications with blockchain and modern technologies.",
   openGraph: {
     title: "Md. Rayhan Ahmed Shis",
     description:
-      "Passionate about building modern web experiences, automation, and emerging tech.",
+      "Full-stack developer crafting innovative web applications with blockchain and modern technologies.",
     url: "https://rayhanahmedshis.me",
-    siteName: "MRAS Portfolio",
+    siteName: "Rayhan Ahmed Shis Portfolio",
     locale: "en_US",
     type: "website",
     images: [
@@ -37,11 +37,16 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Md. Rayhan Ahmed Shis",
     description:
-      "Passionate about building modern web experiences, automation, and emerging tech.",
+      "Full-stack developer crafting innovative web applications with blockchain and modern technologies.",
     images: ["/og.png"],
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/apple-touch-icon.png",
   },
 };
 
