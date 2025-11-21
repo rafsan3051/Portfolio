@@ -7,7 +7,7 @@ import Testimonials from "../../components/testimonials";
 
 export default function AboutPage() {
   return (
-    <div className="relative min-h-screen bg-gradient-to-bl from-black via-zinc-600/20 to-black">
+    <div className="relative min-h-screen bg-zinc-950">
       <Particles
         className="absolute inset-0 -z-10 animate-fade-in"
         quantity={60}

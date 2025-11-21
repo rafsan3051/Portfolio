@@ -40,7 +40,7 @@ export default function ProjectsPage() {
   }, [repos, searchQuery, selectedCategory]);
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-tr from-black via-zinc-600/20 to-black">
+    <div className="relative min-h-screen bg-zinc-950">
       <Particles
         className="absolute inset-0 -z-10 animate-fade-in"
         quantity={80}

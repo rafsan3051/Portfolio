@@ -80,10 +80,10 @@ const config: Config = {
   			},
   			glow: {
   				'0%, 100%': {
-  					opacity: '0.6'
+  					opacity: '1'
   				},
   				'50%': {
-  					opacity: '1'
+  					opacity: '0.5'
   				}
   			},
   			'fade-in': {
@@ -102,19 +102,32 @@ const config: Config = {
   				'100%': { opacity: '0%' }
   			},
   			title: {
-  				'0%': { 'line-height': '0%', 'letter-spacing': '0.25em', opacity: '0' },
-  				'25%': { 'line-height': '0%', opacity: '0%' },
-  				'80%': { opacity: '100%' },
-  				'100%': { 'line-height': '100%', opacity: '100%' }
+  				'0%': {
+  					'line-height': '0%',
+  					'letter-spacing': '0.25em',
+  					opacity: '0'
+  				},
+  				'25%': {
+  					'line-height': '0%',
+  					opacity: '0%'
+  				},
+  				'80%': {
+  					opacity: '100%'
+  				},
+  				'100%': {
+  					'line-height': '100%',
+  					opacity: '100%'
+  				}
   			}
   		},
   		animation: {
   			float: 'float 6s ease-in-out infinite',
-  			glow: 'glow 4s ease-in-out infinite',
+  			glow: 'glow 2s ease-in-out infinite',
   			'fade-in': 'fade-in 3s ease-in-out forwards',
   			title: 'title 3s ease-out forwards',
   			'fade-left': 'fade-left 3s ease-in-out forwards',
-  			'fade-right': 'fade-right 3s ease-in-out forwards'
+  			'fade-right': 'fade-right 3s ease-in-out forwards',
+  			'animate-glow': 'glow 2s ease-in-out infinite'
   		}
   	}
   },
