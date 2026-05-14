@@ -49,16 +49,24 @@ export const metadata: Metadata = {
   },
 };
 
+import { SmoothScroll } from "../components/smooth-scroll";
+import { Preloader } from "../components/preloader";
+import { CustomCursor } from "../components/cursor";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className="dark">
-      <body className={`${inter.variable} ${jetbrainsMono.variable} min-h-screen bg-background text-foreground bg-noise font-sans relative`}>
+      <body className={`${inter.variable} ${jetbrainsMono.variable} min-h-screen bg-background text-foreground bg-noise font-sans relative cursor-none`}>
+        <Preloader />
+        <CustomCursor />
         <div className="fixed inset-0 z-[-1] bg-grid pointer-events-none opacity-40"></div>
         <div className="fixed inset-0 z-[100] scanline pointer-events-none"></div>
         <ScrollProgress />
         <ThemeProvider>
-          {children}
-          <Analytics />
+          <SmoothScroll>
+            {children}
+            <Analytics />
+          </SmoothScroll>
         </ThemeProvider>
         <BackToTop />
       </body>
