@@ -1,47 +1,30 @@
 "use client";
 
-import Link from "next/link";
-import Particles from "../components/particles";
-import AnimatedBackground from "../components/animated-background";
-
-const navigation = [
-  { name: "Projects", href: "/projects" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
-];
+import { Navbar } from "../components/navbar";
+import { HeroSection } from "../components/sections/hero";
+import { AboutSection } from "../components/sections/about";
+import { SkillsSection } from "../components/sections/skills";
+import { ProjectsSection } from "../components/sections/projects";
+import { ExperienceSection } from "../components/sections/experience";
+import { ContactSection } from "../components/sections/contact";
 
 export default function Page() {
   return (
-    <main className="flex flex-col items-center justify-center w-screen h-screen overflow-hidden bg-zinc-950">
-      <AnimatedBackground />
-      <nav className="my-16 animate-fade-in z-20">
-        <ul className="flex items-center justify-center gap-4">
-          {navigation.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-sm duration-500 text-zinc-500 hover:text-zinc-300"
-            >
-              {item.name}
-            </Link>
-          ))}
-        </ul>
-      </nav>
-      <Particles className="absolute inset-0 z-10 animate-fade-in" quantity={100} />
+    <main className="flex min-h-screen flex-col items-center justify-between w-full overflow-x-hidden">
+      <Navbar />
+      <HeroSection />
+      <AboutSection />
+      <SkillsSection />
+      <ProjectsSection />
+      <ExperienceSection />
+      <ContactSection />
       
-      <div className="hidden w-screen h-px md:block animate-glow bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-      
-      <h1 className="z-10 py-3.5 px-0.5 text-4xl text-transparent duration-1000 bg-white cursor-default animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap bg-clip-text">
-        Md. Rayhan Ahmed Shis
-      </h1>
-
-      <div className="hidden w-screen h-px md:block animate-glow bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
-      
-      <div className="my-16 text-center animate-fade-in">
-        <h2 className="text-sm text-zinc-500">
-          Full-stack developer crafting innovative web applications with blockchain and modern technologies.
-        </h2>
-      </div>
+      {/* Footer */}
+      <footer className="w-full py-8 text-center border-t border-white/5 glass z-10 mt-20">
+        <p className="text-zinc-500 font-mono text-sm">
+          © {new Date().getFullYear()} Md. Rayhan Ahmed Shis. All systems operational.
+        </p>
+      </footer>
     </main>
   );
 }

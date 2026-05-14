@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  allowedDevOrigins: ['192.168.1.100', '192.168.1.100:3000', 'http://192.168.1.100:3000'],
   transpilePackages: ['@once-ui-system/core'],
   images: {
     remotePatterns: [
@@ -14,12 +15,6 @@ const nextConfig = {
       },
     ],
   },
-  experimental: {
-    optimizePackageImports: [
-      "lucide-react",
-      "framer-motion"
-    ]
-  }
 };
 
 export default nextConfig;

@@ -56,7 +56,19 @@ const config: Config = {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+            cyan: {
+                neon: '#00f3ff',
+            },
+            purple: {
+                neon: '#b026ff',
+            },
+            pink: {
+                neon: '#ff007f',
+            },
+            dark: {
+                glass: 'rgba(10, 10, 10, 0.65)',
+            }
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
@@ -67,7 +79,11 @@ const config: Config = {
   			sans: [
   				'var(--font-inter)',
                     ...fontFamily.sans
-                ]
+                ],
+            mono: [
+                'var(--font-jetbrains-mono)',
+                ...fontFamily.mono
+            ]
   		},
   		keyframes: {
   			float: {

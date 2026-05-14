@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "../styles/globals.css";
 import { ThemeProvider } from "../components/theme-provider";
 import { Analytics } from "@vercel/analytics/react";
@@ -7,6 +7,7 @@ import ScrollProgress from "../components/scroll-progress";
 import BackToTop from "../components/back-to-top";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rayhanahmedshis.me"),
@@ -50,8 +51,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} min-h-screen bg-background text-foreground`}> 
+    <html lang="en" suppressHydrationWarning className="dark">
+      <body className={`${inter.variable} ${jetbrainsMono.variable} min-h-screen bg-background text-foreground bg-noise font-sans relative`}>
+        <div className="fixed inset-0 z-[-1] bg-grid pointer-events-none opacity-40"></div>
+        <div className="fixed inset-0 z-[100] scanline pointer-events-none"></div>
         <ScrollProgress />
         <ThemeProvider>
           {children}
