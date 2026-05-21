@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { HeroCanvas } from "../3d/hero-canvas";
 import { TypeAnimation } from "react-type-animation";
 import { useRef } from "react";
+import { MagneticWrapper } from "../magnetic-wrapper";
 
 export function HeroSection() {
   const ref = useRef(null);
@@ -82,48 +83,71 @@ export function HeroSection() {
         >
           Architecting the digital infrastructure of tomorrow. Specializing in high-performance Web3 solutions and immersive cyberpunk interfaces.
         </motion.div>
-
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
           className="flex flex-col sm:flex-row gap-6 relative z-20"
         >
-          <a
-            href="#projects"
-            className="group relative inline-flex items-center justify-center px-8 py-4 font-mono font-bold text-black bg-cyan-neon rounded-sm overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(0,243,255,0.8)]"
-          >
-            {/* Glitch effect on hover */}
-            <span className="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-20 group-hover:animate-pulse"></span>
-            
-            <span className="relative flex items-center gap-3">
-              [ INITIALIZE_PROJECTS ]
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-            </span>
-          </a>
+          <MagneticWrapper strength={30}>
+            <a
+              href="#projects"
+              className="group relative inline-flex items-center justify-center px-8 py-4 font-mono font-bold text-black bg-cyan-neon rounded-sm overflow-hidden transition-all hover:shadow-[0_0_30px_rgba(0,243,255,0.8)]"
+            >
+              {/* Glitch effect on hover */}
+              <span className="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-20 group-hover:animate-pulse pointer-events-none"></span>
+              
+              <span className="relative flex items-center gap-3">
+                [ INITIALIZE_PROJECTS ]
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" className="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              </span>
+            </a>
+          </MagneticWrapper>
           
-          <a
-            href="#contact"
-            className="group relative inline-flex items-center justify-center px-8 py-4 font-mono font-bold text-white border border-cyan-neon/30 glass rounded-sm overflow-hidden transition-all hover:border-pink-neon hover:text-pink-neon hover:shadow-[0_0_30px_rgba(255,0,127,0.4)]"
-          >
-            {/* Scanning line effect */}
-            <span className="absolute left-0 top-0 w-full h-[2px] bg-pink-neon opacity-0 group-hover:opacity-100 group-hover:animate-[scan_1s_linear_infinite]"></span>
-            
-            <span className="relative flex items-center gap-2">
-              <span className="text-cyan-neon group-hover:text-pink-neon transition-colors">/</span> TRANSMIT_DATA
-            </span>
-          </a>
+          <MagneticWrapper strength={30}>
+            <a
+              href="#contact"
+              className="group relative inline-flex items-center justify-center px-8 py-4 font-mono font-bold text-white border border-cyan-neon/30 glass rounded-sm overflow-hidden transition-all hover:border-pink-neon hover:text-pink-neon hover:shadow-[0_0_30px_rgba(255,0,127,0.4)]"
+            >
+              {/* Scanning line effect */}
+              <span className="absolute left-0 top-0 w-full h-[2px] bg-pink-neon opacity-0 group-hover:opacity-100 group-hover:animate-[scan_1s_linear_infinite] pointer-events-none"></span>
+              
+              <span className="relative flex items-center gap-2">
+                <span className="text-cyan-neon group-hover:text-pink-neon transition-colors">/</span> TRANSMIT_DATA
+              </span>
+            </a>
+          </MagneticWrapper>
         </motion.div>
       </div>
 
       {/* Holographic grid floor perspective */}
-      <div className="absolute bottom-0 left-0 w-full h-1/3 bg-[linear-gradient(to_top,rgba(0,243,255,0.05)_0%,transparent_100%)] pointer-events-none border-b border-cyan-neon/20 transform perspective-[1000px] rotateX-[60deg] origin-bottom scale-150"></div>
+      <div className="absolute bottom-0 left-0 w-full h-1/3 bg-[linear-gradient(to_top,rgba(0,243,255,0.05)_0%,transparent_100%)] pointer-events-none border-b border-cyan-neon/20 transform perspective-[1000px] rotateX-[60deg] origin-bottom scale-150 z-0"></div>
+
+      {/* Floating UI Elements */}
+      <motion.div 
+        style={{ y: useTransform(scrollYProgress, [0, 1], [0, -150]) }}
+        className="absolute top-1/4 left-[10%] hidden lg:block z-0 pointer-events-none opacity-40"
+      >
+        <div className="glass-panel p-4 rounded-sm border border-cyan-neon/20 text-[10px] font-mono text-cyan-neon leading-tight">
+          <span className="text-white">import</span> {`{ Core }`} <span className="text-white">from</span> <span className="text-pink-neon">'@system/os'</span>;<br/>
+          <span className="text-white">const</span> status <span className="text-white">=</span> Core.init();<br/>
+          <span className="text-zinc-500">// STATUS: SECURE</span>
+        </div>
+      </motion.div>
+
+      <motion.div 
+        style={{ y: useTransform(scrollYProgress, [0, 1], [0, -250]) }}
+        className="absolute bottom-1/3 right-[10%] hidden lg:flex items-center gap-2 z-0 pointer-events-none opacity-30"
+      >
+        <div className="w-12 h-[1px] bg-pink-neon" />
+        <span className="text-[10px] font-mono text-pink-neon tracking-widest">[ MEM_ALLOC: 4096MB ]</span>
+      </motion.div>
 
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10"
       >
         <span className="text-[10px] text-cyan-neon/60 font-mono tracking-[0.3em] uppercase glow-text">Scroll_Down</span>
         <div className="w-[1px] h-16 bg-gradient-to-b from-cyan-neon to-transparent animate-pulse shadow-[0_0_10px_#00f3ff]" />
